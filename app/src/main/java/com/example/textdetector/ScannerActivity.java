@@ -32,6 +32,7 @@ import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
 public class ScannerActivity extends AppCompatActivity {
 
+    // Intialize variables
     private ImageView captureIV;
     private TextView resultTV;
     private Button snapBTN, detectBTN;
@@ -49,6 +50,7 @@ public class ScannerActivity extends AppCompatActivity {
         snapBTN = findViewById(R.id.idBTNSnap);
         detectBTN = findViewById(R.id.idBTNDetect);
 
+        // set onclicklistener
         detectBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,6 +59,7 @@ public class ScannerActivity extends AppCompatActivity {
             }
         });
 
+        // set onclicklistener
         snapBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,24 +75,27 @@ public class ScannerActivity extends AppCompatActivity {
 
     }
 
+    // check Camera Permission
     private boolean checkPermission(){
         int camerpermission = ContextCompat.checkSelfPermission(getApplicationContext(), CAMERA);
         return camerpermission == PackageManager.PERMISSION_GRANTED;
     }
 
+    // Request Camera Permission
     private void requestPermission(){
         int PERMISSION_CODE = 200;
         ActivityCompat.requestPermissions(this, new String[]{CAMERA}, PERMISSION_CODE);
     }
 
+    // Open Camera
     private void captureImage(){
-
         Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePicture.resolveActivity(getPackageManager())!=null){
             startActivityForResult(takePicture,REQUEST_IMAGE_CAPTURE);
         }
     }
 
+    // Show toast on the user response on Permission Request
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -104,6 +110,7 @@ public class ScannerActivity extends AppCompatActivity {
         }
     }
 
+    // After detecting data add that data to text view
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -114,6 +121,7 @@ public class ScannerActivity extends AppCompatActivity {
         }
     }
 
+    // Detect text in image
     private void detectText(){
         InputImage image = InputImage.fromBitmap(imageBitmap,0);
         TextRecognizer recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);

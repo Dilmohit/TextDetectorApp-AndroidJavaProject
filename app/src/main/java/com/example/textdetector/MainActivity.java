@@ -9,6 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Intialize Button
     private Button captureButton;
 
     @Override
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
         captureButton = findViewById(R.id.idBTNCapture);
 
+        // add onclicklistener on button
         captureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

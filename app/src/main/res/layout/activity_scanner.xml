@@ -7,6 +7,7 @@
     android:background="@color/black_shade_1"
     tools:context=".ScannerActivity">
 
+    <!--This imageview is where clicked image will show up-->
     <ImageView
         android:layout_width="250dp"
         android:layout_height="250dp"
@@ -15,6 +16,7 @@
         android:src="@drawable/scanimg"
         android:id="@+id/idIVCaptureImage"/>
 
+    <!--This text view will show the results-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,6 +34,7 @@
         android:textStyle="bold"
         android:padding="4dp"/>
 
+    <!--This button is use to click picture-->
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,6 +48,7 @@
         app:backgroundTint="@color/yellow"
         android:id="@+id/idBTNSnap"/>
 
+    <!--This button is used to detect text from images-->
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
