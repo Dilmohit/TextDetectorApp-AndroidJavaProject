@@ -15,15 +15,11 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.text.Text;
@@ -56,26 +52,17 @@ public class ScannerActivity extends AppCompatActivity {
         detectBTN = findViewById(R.id.idBTNDetect);
 
         // set onclicklistener
-        detectBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                detectText();
-
-            }
-        });
+        detectBTN.setOnClickListener(v -> detectText());
 
         // set onclicklistener
-        snapBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        snapBTN.setOnClickListener(v -> {
 
-                if (checkPermission()){
-                    captureImage();
-                }else {
-                    requestPermission();
-                }
-
+            if (checkPermission()){
+                captureImage();
+            }else {
+                requestPermission();
             }
+
         });
 
     }
@@ -130,33 +117,25 @@ public class ScannerActivity extends AppCompatActivity {
     private void detectText(){
         InputImage image = InputImage.fromBitmap(imageBitmap,0);
         TextRecognizer recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
-        Task<Text> result = recognizer.process(image).addOnSuccessListener(new OnSuccessListener<Text>() {
-            @Override
-            public void onSuccess(Text text) {
-                StringBuilder result = new StringBuilder();
-                for (Text.TextBlock block: text.getTextBlocks()){
-                    String blockText = block.getText();
-                    Point[] blockCornerPoint = block.getCornerPoints();
-                    Rect blockFrame = block.getBoundingBox();
-                    for (Text.Line line: block.getLines()){
-                        String lineText = line.getText();
-                        Point[] lineCornerPoint = line.getCornerPoints();
-                        Rect linREct = line.getBoundingBox();
-                        for (Text.Element element: line.getElements()){
-                            String elementText = element.getText();
-                            result.append(elementText);
-                        }
-
-                        resultTV.setText(blockText);
+        Task<Text> result = recognizer.process(image).addOnSuccessListener(text -> {
+            StringBuilder result1 = new StringBuilder();
+            for (Text.TextBlock block: text.getTextBlocks()){
+                String blockText = block.getText();
+                Point[] blockCornerPoint = block.getCornerPoints();
+                Rect blockFrame = block.getBoundingBox();
+                for (Text.Line line: block.getLines()){
+                    String lineText = line.getText();
+                    Point[] lineCornerPoint = line.getCornerPoints();
+                    Rect linREct = line.getBoundingBox();
+                    for (Text.Element element: line.getElements()){
+                        String elementText = element.getText();
+                        result1.append(elementText);
                     }
+
+                    resultTV.setText(blockText);
                 }
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ScannerActivity.this, "Fail To Detect Text"+e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        }).addOnFailureListener(e -> Toast.makeText(ScannerActivity.this, "Fail To Detect Text"+e.getMessage(), Toast.LENGTH_SHORT).show());
 
     }
 }
