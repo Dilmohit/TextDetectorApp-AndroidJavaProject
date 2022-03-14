@@ -35,7 +35,6 @@ public class ScannerActivity extends AppCompatActivity {
     // Intialize variables
     private ImageView captureIV;
     private TextView resultTV;
-    private Button snapBTN, detectBTN;
     private Bitmap imageBitmap;
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -47,30 +46,21 @@ public class ScannerActivity extends AppCompatActivity {
 
         captureIV = findViewById(R.id.idIVCaptureImage);
         resultTV = findViewById(R.id.idIvDetectedText);
-        snapBTN = findViewById(R.id.idBTNSnap);
-        detectBTN = findViewById(R.id.idBTNDetect);
+        Button snapBTN = findViewById(R.id.idBTNSnap);
+        Button detectBTN = findViewById(R.id.idBTNDetect);
 
         // set onclicklistener
-        detectBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                detectText();
-
-            }
-        });
+        detectBTN.setOnClickListener(v -> detectText());
 
         // set onclicklistener
-        snapBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        snapBTN.setOnClickListener(v -> {
 
-                if (checkPermission()){
-                    captureImage();
-                }else {
-                    requestPermission();
-                }
-
+            if (checkPermission()){
+                captureImage();
+            }else {
+                requestPermission();
             }
+
         });
 
     }
