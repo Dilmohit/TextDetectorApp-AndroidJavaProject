@@ -29,7 +29,7 @@ import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
 public class ScannerActivity extends AppCompatActivity {
 
-    // Intialize variables
+    // Initialize variables
     private ImageView captureIV;
     private TextView resultTV;
     private Bitmap imageBitmap;
