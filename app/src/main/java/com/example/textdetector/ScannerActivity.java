@@ -1,13 +1,11 @@
 package com.example.textdetector;
 
 import static android.Manifest.permission.CAMERA;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
