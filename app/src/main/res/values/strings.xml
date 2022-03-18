@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Text Detector</string>
+    <string name="scanner_image">Scanner Image</string>
+    <string name="scanner_image">Scanner Image</string>
 </resources>
