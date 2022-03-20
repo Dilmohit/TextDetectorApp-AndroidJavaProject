@@ -6,6 +6,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -13,6 +15,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,6 +27,8 @@ import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
+
+import java.util.Objects;
 
 public class ScannerActivity extends AppCompatActivity {
 
@@ -49,7 +54,16 @@ public class ScannerActivity extends AppCompatActivity {
         Button detectBTN = findViewById(R.id.idBTNDetect);
 
         // set onclicklistener
-        detectBTN.setOnClickListener(v -> detectText());
+        detectBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (captureIV.getDrawable()==null){
+                    Toast.makeText(ScannerActivity.this, "Failed to fetch Image", Toast.LENGTH_SHORT).show();
+                }else {
+                    detectText();
+                }
+            }
+        });
 
         // set onclicklistener
         snapBTN.setOnClickListener(v -> {
@@ -77,6 +91,7 @@ public class ScannerActivity extends AppCompatActivity {
     }
 
     // Open Camera
+    @SuppressLint("QueryPermissionsNeeded")
     private void captureImage(){
         Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePicture.resolveActivity(getPackageManager())!=null){
@@ -104,7 +119,7 @@ public class ScannerActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
-            Bundle extras = data.getExtras();
+            Bundle extras = Objects.requireNonNull(data).getExtras();
             imageBitmap = (Bitmap) extras.get("data");
             captureIV.setImageBitmap(imageBitmap);
         }

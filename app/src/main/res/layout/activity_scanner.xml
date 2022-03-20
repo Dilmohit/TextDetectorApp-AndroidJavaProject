@@ -11,11 +11,9 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="200dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="101dp"
-        android:layout_marginBottom="89dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="50dp"
         app:cardCornerRadius="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,61 +32,64 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="83dp"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
         app:cardCornerRadius="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/idBTNDetect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
-        <TextView
-            android:id="@+id/idIvDetectedText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:text="Your Result Will Appear Here"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/idIvDetectedText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="Your Result Will Appear Here"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </ScrollView>
 
     </androidx.cardview.widget.CardView>
 
     <!--This button is use to click picture-->
+
+    <!--This button is used to detect text from images-->
 
     <Button
         android:id="@+id/idBTNSnap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/idIvDetectedText"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="91dp"
+        android:layout_marginTop="82dp"
         android:background="@drawable/button_back"
         android:text="Snap"
         android:textAllCaps="false"
         app:backgroundTint="@color/teal_700"
-        app:layout_constraintBaseline_toBaselineOf="@+id/idBTNDetect"
-        app:layout_constraintEnd_toStartOf="@+id/idBTNDetect"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!--This button is used to detect text from images-->
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
     <Button
         android:id="@+id/idBTNDetect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/idBTNSnap"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="210dp"
+        android:layout_marginTop="82dp"
+        android:layout_marginEnd="82dp"
         android:background="@drawable/button_back"
         android:text="Detect"
         android:textAllCaps="false"
         app:backgroundTint="@color/teal_700"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/idBTNSnap"
         app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
