@@ -6,7 +6,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,7 +14,6 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -54,14 +52,11 @@ public class ScannerActivity extends AppCompatActivity {
         Button detectBTN = findViewById(R.id.idBTNDetect);
 
         // set onclicklistener
-        detectBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (captureIV.getDrawable()==null){
-                    Toast.makeText(ScannerActivity.this, "Failed to fetch Image", Toast.LENGTH_SHORT).show();
-                }else {
-                    detectText();
-                }
+        detectBTN.setOnClickListener(v -> {
+            if (captureIV.getDrawable()==null){
+                Toast.makeText(ScannerActivity.this, "Failed to fetch Image", Toast.LENGTH_SHORT).show();
+            }else {
+                detectText();
             }
         });
 
