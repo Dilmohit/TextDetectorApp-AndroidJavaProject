@@ -3,9 +3,11 @@ This is a Text Detector App For Android Created Using Java Language.
 It Uses Firebase ML Kit to Detect and then Extract Text from Images.
 
 
-https://user-images.githubusercontent.com/96916323/156910721-97cdc91f-3678-4974-a695-b16e64ca9903.mp4
+![ Alt text](https://media.giphy.com/media/8wKcLQ7ZyC51iGNuSV/giphy.gif)
 
-
+Get Started - 
+To run this project, you need to create your own firebase account. And connect that firebase 
+account with this project in android studio. After that you will be able to run this project.
 
 MIT License
 Copyright (c) 2022 Dilmohit
