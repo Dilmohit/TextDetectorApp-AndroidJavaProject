@@ -62,8 +62,6 @@
 
     <!--This button is use to click picture-->
 
-    <!--This button is used to detect text from images-->
-
     <Button
         android:id="@+id/idBTNSnap"
         android:layout_width="wrap_content"
@@ -77,6 +75,8 @@
         app:backgroundTint="@color/teal_700"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+
+    <!--This button is used to detect text from images-->
 
     <Button
         android:id="@+id/idBTNDetect"
